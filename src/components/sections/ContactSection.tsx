@@ -27,14 +27,14 @@ export const ContactSection: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 2000));
-    
+
     setIsSubmitting(false);
     setSubmitted(true);
     setFormData({ name: '', email: '', subject: '', message: '' });
-    
+
     // Reset success message after 3 seconds
     setTimeout(() => setSubmitted(false), 3000);
   };
@@ -66,21 +66,21 @@ export const ContactSection: React.FC = () => {
   const socialNetworks = [
     {
       icon: Github,
-      label: 'GITHUB_NODE',
+      label: 'GITHUB',
       href: 'https://github.com/yourusername',
       color: '#10B981',
       status: 'ONLINE'
     },
     {
       icon: Linkedin,
-      label: 'LINKEDIN_HUB',
+      label: 'LINKEDIN',
       href: 'https://linkedin.com/in/yourusername',
       color: '#3B82F6',
       status: 'ACTIVE'
     },
     {
       icon: Twitter,
-      label: 'TWITTER_FEED',
+      label: 'TWITTER',
       href: 'https://twitter.com/yourusername',
       color: '#8B5CF6',
       status: 'LIVE'
@@ -124,7 +124,7 @@ export const ContactSection: React.FC = () => {
                   <span className="text-emerald-400 text-xs font-mono">ONLINE</span>
                 </div>
               </div>
-              
+
               {submitted && (
                 <motion.div
                   className="mb-4 sm:mb-6 p-3 sm:p-4 bg-emerald-500/20 border-2 border-emerald-400/50 rounded-lg"
@@ -239,18 +239,18 @@ export const ContactSection: React.FC = () => {
                 <ambientLight intensity={0.2} />
                 <pointLight position={[5, 5, 5]} intensity={1} color="#10B981" />
                 <pointLight position={[-5, -5, -5]} intensity={0.5} color="#3B82F6" />
-                
+
                 <SpaceBackground count={300} />
                 <SatelliteArray />
-                
-                <OrbitControls 
-                  enableZoom={false} 
-                  enablePan={false} 
-                  autoRotate 
-                  autoRotateSpeed={0.3} 
+
+                <OrbitControls
+                  enableZoom={false}
+                  enablePan={false}
+                  autoRotate
+                  autoRotateSpeed={0.3}
                 />
               </Canvas>
-              
+
               <div className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-gray-900/90 backdrop-blur-sm rounded-lg p-2 border border-emerald-400/50">
                 <div className="text-emerald-400 text-xs font-mono">SATELLITE_ARRAY</div>
                 <div className="text-emerald-400 text-xs font-mono">STATUS: ACTIVE</div>
@@ -268,7 +268,7 @@ export const ContactSection: React.FC = () => {
                 <Radio className="w-5 h-5 sm:w-6 sm:h-6 text-emerald-400" />
                 <span>COMMUNICATION_CHANNELS</span>
               </h3>
-              
+
               <div className="space-y-3 sm:space-y-4">
                 {contactChannels.map((channel) => {
                   const Icon = channel.icon;
@@ -284,11 +284,10 @@ export const ContactSection: React.FC = () => {
                         </div>
                       </div>
                       <div className="text-right">
-                        <div className={`text-xs font-mono px-2 py-1 rounded-full border ${
-                          channel.status === 'ACTIVE' ? 'bg-emerald-500/20 text-emerald-400 border-emerald-400/50' :
-                          channel.status === 'STANDBY' ? 'bg-yellow-500/20 text-yellow-400 border-yellow-400/50' :
-                          'bg-blue-500/20 text-blue-400 border-blue-400/50'
-                        }`}>
+                        <div className={`text-xs font-mono px-2 py-1 rounded-full border ${channel.status === 'ACTIVE' ? 'bg-emerald-500/20 text-emerald-400 border-emerald-400/50' :
+                            channel.status === 'STANDBY' ? 'bg-yellow-500/20 text-yellow-400 border-yellow-400/50' :
+                              'bg-blue-500/20 text-blue-400 border-blue-400/50'
+                          }`}>
                           {channel.status}
                         </div>
                       </div>
@@ -316,7 +315,7 @@ export const ContactSection: React.FC = () => {
                 <div className="grid grid-cols-3 gap-3 sm:gap-4">
                   {socialNetworks.map((network) => {
                     const Icon = network.icon;
-                    
+
                     return (
                       <motion.a
                         key={network.label}
@@ -329,11 +328,10 @@ export const ContactSection: React.FC = () => {
                       >
                         <Icon size={20} style={{ color: network.color }} className="mx-auto mb-2 sm:w-6 sm:h-6" />
                         <div className="text-xs text-gray-400 font-mono mb-1">{network.label}</div>
-                        <div className={`text-xs font-mono px-2 py-1 rounded-full border ${
-                          network.status === 'ONLINE' ? 'bg-emerald-500/20 text-emerald-400 border-emerald-400/50' :
-                          network.status === 'ACTIVE' ? 'bg-blue-500/20 text-blue-400 border-blue-400/50' :
-                          'bg-purple-500/20 text-purple-400 border-purple-400/50'
-                        }`}>
+                        <div className={`text-xs font-mono px-2 py-1 rounded-full border ${network.status === 'ONLINE' ? 'bg-emerald-500/20 text-emerald-400 border-emerald-400/50' :
+                            network.status === 'ACTIVE' ? 'bg-blue-500/20 text-blue-400 border-blue-400/50' :
+                              'bg-purple-500/20 text-purple-400 border-purple-400/50'
+                          }`}>
                           {network.status}
                         </div>
                       </motion.a>
