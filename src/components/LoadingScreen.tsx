@@ -41,7 +41,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete 
   const createMeteor = useCallback((canvas: HTMLCanvasElement): Meteor => {
     const side = Math.floor(Math.random() * 4); // 0: top, 1: right, 2: bottom, 3: left
     let x, y, angle;
-    
+
     switch (side) {
       case 0: // Top
         x = Math.random() * canvas.width;
@@ -116,12 +116,12 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete 
     // Create gradient for meteor tail
     const tailEndX = meteor.x - Math.cos(meteor.angle) * meteor.tailLength;
     const tailEndY = meteor.y - Math.sin(meteor.angle) * meteor.tailLength;
-    
+
     const gradient = ctx.createLinearGradient(
       meteor.x, meteor.y,
       tailEndX, tailEndY
     );
-    
+
     gradient.addColorStop(0, `${meteor.color}${Math.round(meteor.opacity * 255).toString(16).padStart(2, '0')}`);
     gradient.addColorStop(0.7, `${meteor.color}40`);
     gradient.addColorStop(1, `${meteor.color}00`);
@@ -221,7 +221,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete 
       setLoadingProgress(prev => {
         const increment = Math.random() * 15 + 5; // 5-20% increments
         const newProgress = Math.min(prev + increment, 100);
-        
+
         if (newProgress >= 100) {
           clearInterval(interval);
           setTimeout(() => {
@@ -229,7 +229,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete 
             setTimeout(onLoadingComplete, 1000); // Delay for fade out
           }, 500);
         }
-        
+
         return newProgress;
       });
     }, 200 + Math.random() * 300); // 200-500ms intervals
@@ -277,7 +277,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete 
               transition={{ duration: 1, delay: 0.5 }}
             >
               <h1 className="text-4xl sm:text-5xl font-bold font-mono bg-gradient-to-r from-emerald-400 via-blue-400 to-purple-400 bg-clip-text text-transparent mb-4">
-                SPACE_DEV
+                ASTRO_ALCHEMY
               </h1>
               <p className="text-gray-300 font-mono text-sm">
                 Initializing cosmic portfolio...
@@ -299,7 +299,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete 
                   transition={{ duration: 0.3, ease: "easeOut" }}
                 />
               </div>
-              
+
               <div className="flex justify-between items-center text-sm font-mono">
                 <span className="text-emerald-400">LOADING_SYSTEMS</span>
                 <span className="text-blue-400">{Math.round(loadingProgress)}%</span>
@@ -320,7 +320,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onLoadingComplete 
                 {loadingProgress >= 75 && loadingProgress < 95 && "Establishing communication links..."}
                 {loadingProgress >= 95 && "Launch sequence initiated..."}
               </div>
-              
+
               {/* Animated dots */}
               <motion.div
                 className="flex justify-center space-x-1"
