@@ -242,69 +242,6 @@ export const SkillsSection: React.FC = React.memo(() => {
 
           {/* Enhanced Skill Categories & Details */}
           <div className="space-y-6">
-            {/* Enhanced Category Filters */}
-            <motion.div
-              className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-emerald-400/50"
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              <h3 className="text-lg font-bold text-white mb-4 flex items-center space-x-2 font-mono">
-                <Terminal className="w-5 h-5 text-emerald-400" />
-                <span>CATEGORY_FILTER</span>
-              </h3>
-
-              <div className="space-y-2">
-                <button
-                  onClick={() => handleCategorySelect(null)}
-                  className={`w-full text-left p-3 rounded-lg transition-all duration-300 border ${selectedCategory === null
-                    ? 'bg-emerald-500/20 border-emerald-400 text-emerald-300'
-                    : 'bg-gray-800/50 border-gray-600 text-gray-300 hover:border-emerald-400/50'
-                    }`}
-                >
-                  <div className="font-mono text-sm">ALL_CATEGORIES</div>
-                  <div className="text-xs text-gray-400">{skills.length} total skills</div>
-                </button>
-
-                {skillCategories.map((category) => {
-                  const Icon = category.icon;
-                  const isSelected = selectedCategory === category.key;
-                  const hasSkills = category.skills.length > 0;
-
-                  return (
-                    <button
-                      key={category.key}
-                      onClick={() => handleCategorySelect(isSelected ? null : category.key)}
-                      disabled={!hasSkills}
-                      className={`w-full text-left p-3 rounded-lg transition-all duration-300 border ${isSelected
-                        ? 'border-emerald-400 text-emerald-300'
-                        : hasSkills
-                          ? 'bg-gray-800/50 border-gray-600 text-gray-300 hover:border-emerald-400/50'
-                          : 'bg-gray-800/30 border-gray-700 text-gray-500 cursor-not-allowed'
-                        }`}
-                      style={isSelected ? { backgroundColor: `${category.color}20` } : {}}
-                    >
-                      <div className="flex items-center space-x-3">
-                        <Icon
-                          size={16}
-                          style={{ color: hasSkills ? category.color : '#6B7280' }}
-                        />
-                        <div>
-                          <div className="font-mono text-sm">{category.name.toUpperCase()}</div>
-                          <div className="text-xs text-gray-400">
-                            {category.skills.length} skills • {category.description}
-                          </div>
-                        </div>
-                      </div>
-                      {isSelected && (
-                        <div className="text-xs text-emerald-400 mt-1 font-mono">● ACTIVE</div>
-                      )}
-                    </button>
-                  );
-                })}
-              </div>
-            </motion.div>
-
             {/* Enhanced Skill Details Panel */}
             <motion.div
               className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-emerald-400/50 min-h-48"
@@ -375,6 +312,69 @@ export const SkillsSection: React.FC = React.memo(() => {
                 )}
               </AnimatePresence>
             </motion.div>
+
+            {/* Enhanced Category Filters */}
+            <motion.div
+              className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-emerald-400/50"
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <h3 className="text-lg font-bold text-white mb-4 flex items-center space-x-2 font-mono">
+                <Terminal className="w-5 h-5 text-emerald-400" />
+                <span>CATEGORY_FILTER</span>
+              </h3>
+
+              <div className="space-y-2">
+                <button
+                  onClick={() => handleCategorySelect(null)}
+                  className={`w-full text-left p-3 rounded-lg transition-all duration-300 border ${selectedCategory === null
+                    ? 'bg-emerald-500/20 border-emerald-400 text-emerald-300'
+                    : 'bg-gray-800/50 border-gray-600 text-gray-300 hover:border-emerald-400/50'
+                    }`}
+                >
+                  <div className="font-mono text-sm">ALL_CATEGORIES</div>
+                  <div className="text-xs text-gray-400">{skills.length} total skills</div>
+                </button>
+
+                {skillCategories.map((category) => {
+                  const Icon = category.icon;
+                  const isSelected = selectedCategory === category.key;
+                  const hasSkills = category.skills.length > 0;
+
+                  return (
+                    <button
+                      key={category.key}
+                      onClick={() => handleCategorySelect(isSelected ? null : category.key)}
+                      disabled={!hasSkills}
+                      className={`w-full text-left p-3 rounded-lg transition-all duration-300 border ${isSelected
+                        ? 'border-emerald-400 text-emerald-300'
+                        : hasSkills
+                          ? 'bg-gray-800/50 border-gray-600 text-gray-300 hover:border-emerald-400/50'
+                          : 'bg-gray-800/30 border-gray-700 text-gray-500 cursor-not-allowed'
+                        }`}
+                      style={isSelected ? { backgroundColor: `${category.color}20` } : {}}
+                    >
+                      <div className="flex items-center space-x-3">
+                        <Icon
+                          size={16}
+                          style={{ color: hasSkills ? category.color : '#6B7280' }}
+                        />
+                        <div>
+                          <div className="font-mono text-sm">{category.name.toUpperCase()}</div>
+                          <div className="text-xs text-gray-400">
+                            {category.skills.length} skills • {category.description}
+                          </div>
+                        </div>
+                      </div>
+                      {isSelected && (
+                        <div className="text-xs text-emerald-400 mt-1 font-mono">● ACTIVE</div>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+            </motion.div>   
           </div>
         </div>
       </div>
