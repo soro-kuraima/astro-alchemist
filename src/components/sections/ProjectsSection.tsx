@@ -76,6 +76,19 @@ export const ProjectsSection: React.FC = () => {
   const canvasRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
 
+  // Effect to disable body scroll when modal is open
+  useEffect(() => {
+    if (selectedProject) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    // Cleanup function to ensure scroll is re-enabled when component unmounts
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, [selectedProject]);
+
   // Mouse tracking for interactive movement
   useEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
